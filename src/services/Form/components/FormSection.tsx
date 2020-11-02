@@ -24,8 +24,9 @@ const StyledButton = styled(Button)`
   border-radius: 5px;
   display: flex;
   align-items: center;
+  height: auto;
   bottom: 40px;
-  padding: 20px 25px;
+  padding: 10px 25px;
   span {
     font-size: 17px;
     color: #111216;

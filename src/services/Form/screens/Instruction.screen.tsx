@@ -26,7 +26,8 @@ const LegalNotice = styled(Paragraph)`
 const StyledButton = styled(Button)`
   position: fixed;
   bottom: 40px;
-  padding: 20px 25px;
+  height: auto;
+  padding: 10px 25px;
   border: none;
   border-radius: 5px;
   display: flex;
