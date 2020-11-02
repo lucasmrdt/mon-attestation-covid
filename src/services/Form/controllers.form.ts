@@ -9,7 +9,7 @@ export const submitForm = () =>
     address: FormStore.get('address'),
     birthDate: FormStore.get('birthDate'),
     city: FormStore.get('city'),
-    dateOfLeave: moment().format('YYYY-MM-DD'),
+    dateOfLeave: moment().format('DD/MM/YYYY'),
     firstName: FormStore.get('firstName'),
     hourOfLeave: moment().format('HH:mm'),
     lastName: FormStore.get('lastName'),
