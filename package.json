@@ -27,11 +27,9 @@
     "web-vitals": "0.2.4"
   },
   "scripts": {
-    "dev": "next",
     "start": "craco start",
-    "build": "craco build && next build",
+    "build": "craco build",
     "test": "craco test",
-    "postbuild": "next-on-netlify",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
