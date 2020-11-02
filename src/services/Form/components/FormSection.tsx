@@ -7,8 +7,6 @@ import styled from '@emotion/styled';
 import mediaqueries from 'styles/styles.utils';
 import { Headings, Article } from 'components';
 
-const isAndroid = navigator.userAgent.toLowerCase().indexOf('android') !== -1;
-
 const Title = styled(Headings.h1)`
   text-align: center;
   margin: auto;
@@ -27,6 +25,7 @@ const StyledButton = styled(Button)`
   border-radius: 5px;
   display: flex;
   align-items: center;
+  bottom: 40px;
   span {
     font-size: 17px;
     color: #111216;
@@ -65,12 +64,20 @@ const FormSection: React.FC<Props> = ({
     [onSubmit],
   );
   const onFocus = useCallback((e: React.FocusEvent) => {
-    if (isAndroid && e.target.tagName === 'INPUT') {
+    const type = e.target.getAttribute('type');
+    if (
+      e.target.tagName === 'INPUT' &&
+      (type === 'text' || type === 'number')
+    ) {
       setFocused(true);
     }
   }, []);
   const onBlur = useCallback((e: React.FocusEvent) => {
-    if (isAndroid && e.target.tagName === 'INPUT') {
+    const type = e.target.getAttribute('type');
+    if (
+      e.target.tagName === 'INPUT' &&
+      (type === 'text' || type === 'number')
+    ) {
       setFocused(false);
     }
   }, []);
@@ -84,9 +91,7 @@ const FormSection: React.FC<Props> = ({
         </form>
       </Container>
       <StyledButton
-        style={{
-          bottom: focused ? 10 : 40,
-        }}
+        style={{ position: focused ? 'absolute' : 'fixed' }}
         onClick={onSubmit}
       >
         {button}

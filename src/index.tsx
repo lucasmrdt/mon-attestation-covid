@@ -9,7 +9,7 @@ import './index.less';
 import reportWebVitals from './reportWebVitals';
 
 message.config({
-  top: 95,
+  top: 15,
 });
 
 ReactDOM.render(

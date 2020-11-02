@@ -41,7 +41,7 @@ const AddressScreen: React.FC<Props> = ({ onSubmit }) => {
     >
       <Input
         autoFocus
-        autoComplete={'address'}
+        autoComplete={'street-address'}
         placeholder={"ex. 3 rue de l'école"}
         value={address}
         onChange={onChange}
