@@ -33,7 +33,7 @@ const StyledButton = styled(Button)`
 `;
 
 const Container = styled(Article)`
-  margin-bottom: 80px;
+  padding-bottom: 120px;
 `;
 
 interface Props {
