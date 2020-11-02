@@ -1,10 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { message } from 'antd';
+
 import { GatewayNavigator } from 'services/Gateway';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 import './index.less';
 import reportWebVitals from './reportWebVitals';
+
+message.config({
+  top: 95,
+});
 
 ReactDOM.render(
   <React.StrictMode>
