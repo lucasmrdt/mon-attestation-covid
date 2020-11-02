@@ -6,7 +6,6 @@ import styled from '@emotion/styled';
 
 import mediaqueries from 'styles/styles.utils';
 import { Headings, Article } from 'components';
-import { css } from '@emotion/core';
 
 const isAndroid = navigator.userAgent.toLowerCase().indexOf('android') !== -1;
 
