@@ -16,6 +16,7 @@
     "emotion-theming": "10.0.27",
     "nedux": "1.0.23",
     "nedux-persist": "1.1.0",
+    "next-on-netlify": "2.6.0",
     "pdf-lib": "1.11.2",
     "qrcode": "1.4.4",
     "react": "^17.0.1",
@@ -26,9 +27,11 @@
     "web-vitals": "0.2.4"
   },
   "scripts": {
+    "dev": "next",
     "start": "craco start",
-    "build": "craco build",
+    "build": "craco build && next build",
     "test": "craco test",
+    "postbuild": "next-on-netlify",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

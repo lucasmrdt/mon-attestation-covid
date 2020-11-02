@@ -43,9 +43,9 @@ interface Props {
 const InstructionScreen: React.FC<Props> = ({ onSubmit }) => (
   <>
     <Container>
-      <Title>Créez votre attestation de déplacement COVID-19</Title>
+      <Title>Générer votre attestation de déplacement COVID-19</Title>
       <Headings.h2>
-        Votre attestation de officielle en quelques secondes. Entrez vos
+        Votre attestation officielle en quelques secondes. Entrez vos
         informations <b>une seule et unique fois</b>.
       </Headings.h2>
       <Steps>
