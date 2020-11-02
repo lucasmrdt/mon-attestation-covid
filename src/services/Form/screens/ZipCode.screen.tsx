@@ -22,7 +22,7 @@ const ZipCodeScreen: React.FC<Props> = ({ onSubmit }) => {
     if (Validators.zipCode(zipCode)) {
       onSubmit();
     } else {
-      message.error('Le code ZIP indiqué est incorrecte');
+      message.error('Le code postal indiqué est incorrecte');
     }
   }, [zipCode, onSubmit]);
   const onChange = useCallback(
@@ -34,7 +34,7 @@ const ZipCodeScreen: React.FC<Props> = ({ onSubmit }) => {
 
   return (
     <Form
-      title={'Entrez votre code ZIP'}
+      title={'Entrez votre code postal'}
       button={'Continuer'}
       onSubmit={onSubmitWrapper}
       icon={<RightOutlined />}
@@ -42,7 +42,7 @@ const ZipCodeScreen: React.FC<Props> = ({ onSubmit }) => {
       <Input
         autoFocus
         // @ts-ignore
-        contentType={'postal-code'}
+        contenttype={'postal-code'}
         placeholder={'ex. 75000'}
         value={zipCode}
         onChange={onChange}

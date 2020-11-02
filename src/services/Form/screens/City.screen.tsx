@@ -42,7 +42,7 @@ const CityScreen: React.FC<Props> = ({ onSubmit }) => {
       <Input
         autoFocus
         // @ts-ignore
-        contentType={'city'}
+        contenttype={'city'}
         placeholder={'ex. Paris'}
         value={city}
         onChange={onChange}

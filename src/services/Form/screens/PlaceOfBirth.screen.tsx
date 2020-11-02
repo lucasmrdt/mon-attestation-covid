@@ -42,7 +42,7 @@ const PlaceOfBirthScreen: React.FC<Props> = ({ onSubmit }) => {
       <Input
         autoFocus
         // @ts-ignore
-        contentType={'cityofbirth'}
+        contenttype={'cityofbirth'}
         placeholder={'ex. Bordeaux'}
         value={placeOfBirth}
         onChange={onChange}

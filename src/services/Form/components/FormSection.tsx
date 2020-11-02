@@ -1,11 +1,14 @@
 /* eslint-disable react/jsx-pascal-case */
 
-import React, { FormEvent, useCallback } from 'react';
+import React, { FormEvent, useCallback, useState } from 'react';
 import { Button } from 'antd';
 import styled from '@emotion/styled';
 
 import mediaqueries from 'styles/styles.utils';
 import { Headings, Article } from 'components';
+import { css } from '@emotion/core';
+
+const isAndroid = navigator.userAgent.toLowerCase().indexOf('android') !== -1;
 
 const Title = styled(Headings.h1)`
   text-align: center;
@@ -20,7 +23,6 @@ const Title = styled(Headings.h1)`
 
 const StyledButton = styled(Button)`
   position: fixed;
-  bottom: 40px;
   height: auto;
   border: none;
   border-radius: 5px;
@@ -54,6 +56,8 @@ const FormSection: React.FC<Props> = ({
   children,
   icon,
 }) => {
+  const [focused, setFocused] = useState(false);
+
   const onSubmitWrapper = useCallback(
     (e: FormEvent) => {
       onSubmit();
@@ -61,14 +65,31 @@ const FormSection: React.FC<Props> = ({
     },
     [onSubmit],
   );
+  const onFocus = useCallback((e: React.FocusEvent) => {
+    if (isAndroid && e.target.tagName === 'INPUT') {
+      setFocused(true);
+    }
+  }, []);
+  const onBlur = useCallback((e: React.FocusEvent) => {
+    if (isAndroid && e.target.tagName === 'INPUT') {
+      setFocused(false);
+    }
+  }, []);
 
   return (
     <>
       <Container>
         <Title>{title}</Title>
-        <form onSubmit={onSubmitWrapper}>{children}</form>
+        <form onFocus={onFocus} onBlur={onBlur} onSubmit={onSubmitWrapper}>
+          {children}
+        </form>
       </Container>
-      <StyledButton onClick={onSubmit}>
+      <StyledButton
+        style={{
+          bottom: focused ? 10 : 40,
+        }}
+        onClick={onSubmit}
+      >
         {button}
         {icon}
       </StyledButton>

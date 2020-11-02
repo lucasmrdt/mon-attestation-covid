@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-pascal-case */
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import styled from '@emotion/styled';
 
 import { Anchor, Section } from 'components';
@@ -46,8 +46,22 @@ interface Props {}
 
 const FormScreen: React.FC<Props> = () => {
   const [step, setStep] = useForm('step');
-  const onNext = useCallback(() => setStep((prev) => prev + 1), [setStep]);
-  const onPrev = useCallback(() => setStep((prev) => prev - 1), [setStep]);
+  const onNext = useCallback(
+    () =>
+      setStep((prev) => {
+        window.history.pushState(`${prev + 1}`, '');
+        return prev + 1;
+      }),
+    [setStep],
+  );
+  const onPrev = useCallback(
+    () =>
+      setStep((prev) => {
+        window.history.back();
+        return prev - 1;
+      }),
+    [setStep],
+  );
   const onFinish = useCallback(async () => {
     const close = message.loading('Création du pdf ...');
     try {
@@ -60,11 +74,28 @@ const FormScreen: React.FC<Props> = () => {
       message.error('Une erreur est survenue');
     }
   }, []);
+  const onHistoryStateUpdate = useCallback(
+    (e: PopStateEvent) => {
+      try {
+        const targetStep = e.state;
+        setStep(parseInt(targetStep, 10));
+      } catch (e) {
+        console.error(`fail to retrieve step from history`);
+      }
+    },
+    [setStep],
+  );
 
   const CurrentStep = steps.find((_, index) => index === step);
   if (!CurrentStep) {
     throw new Error('invalid step');
   }
+
+  useEffect(() => {
+    window.history.replaceState(`${step}`, '');
+    window.onpopstate = onHistoryStateUpdate;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [onHistoryStateUpdate]);
 
   return (
     <Section>

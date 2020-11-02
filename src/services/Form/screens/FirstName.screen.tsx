@@ -42,7 +42,7 @@ const FirstNameScreen: React.FC<Props> = ({ onSubmit }) => {
       <Input
         autoFocus
         // @ts-ignore
-        contentType={'firstname'}
+        contenttype={'firstname'}
         placeholder={'ex. Jacques'}
         value={firstName}
         onChange={onChange}

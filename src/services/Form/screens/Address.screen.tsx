@@ -42,7 +42,7 @@ const AddressScreen: React.FC<Props> = ({ onSubmit }) => {
       <Input
         autoFocus
         // @ts-ignore
-        contentType={'address'}
+        contenttype={'address'}
         placeholder={"ex. 3 rue de l'école"}
         value={address}
         onChange={onChange}
