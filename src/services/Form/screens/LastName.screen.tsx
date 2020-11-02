@@ -41,8 +41,7 @@ const LastNameScreen: React.FC<Props> = ({ onSubmit }) => {
     >
       <Input
         autoFocus
-        // @ts-ignore
-        contenttype={'lastname'}
+        autoComplete={'lastname'}
         placeholder={'ex. Chirac'}
         value={lastName}
         onChange={onChange}

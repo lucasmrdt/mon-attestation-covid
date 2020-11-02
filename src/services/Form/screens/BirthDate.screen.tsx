@@ -53,8 +53,7 @@ const BirthDateScreen: React.FC<Props> = ({ onSubmit }) => {
     >
       <Input
         autoFocus
-        // @ts-ignore
-        contenttype={'birthday'}
+        autoComplete={'birthday'}
         allowClear={false}
         value={birthDate}
         onChange={onChange}

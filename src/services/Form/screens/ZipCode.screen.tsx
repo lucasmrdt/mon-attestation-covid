@@ -41,8 +41,7 @@ const ZipCodeScreen: React.FC<Props> = ({ onSubmit }) => {
     >
       <Input
         autoFocus
-        // @ts-ignore
-        contenttype={'postal-code'}
+        autoComplete={'postal-code'}
         placeholder={'ex. 75000'}
         value={zipCode}
         onChange={onChange}
