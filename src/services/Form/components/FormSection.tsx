@@ -4,19 +4,26 @@ import React, { FormEvent, useCallback } from 'react';
 import { Button } from 'antd';
 import styled from '@emotion/styled';
 
+import mediaqueries from 'styles/styles.utils';
 import { Headings, Article } from 'components';
 
 const Title = styled(Headings.h1)`
   text-align: center;
   margin: auto;
-  margin-bottom: 50px;
+  margin-bottom: 220px;
   margin-top: 70px;
+
+  ${mediaqueries.phone`
+    margin-bottom: 50px;
+  `};
 `;
 
 const StyledButton = styled(Button)`
   position: fixed;
   bottom: 40px;
   height: auto;
+  border: none;
+  border-radius: 5px;
   span {
     font-size: 17px;
     color: #111216;

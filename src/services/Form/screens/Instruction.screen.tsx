@@ -26,6 +26,8 @@ const StyledButton = styled(Button)`
   position: fixed;
   bottom: 40px;
   height: auto;
+  border: none;
+  border-radius: 5px;
   span {
     font-size: 17px;
     color: #111216;
