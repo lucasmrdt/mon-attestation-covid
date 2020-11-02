@@ -4,5 +4,6 @@ import OrderedList from './OrderedList';
 import Paragraph from './Paragraph';
 import Section from './Section';
 import Article from './Article';
+import Input from './Input';
 
-export { Anchor, Headings, OrderedList, Paragraph, Section, Article };
+export { Anchor, Headings, OrderedList, Paragraph, Section, Article, Input };

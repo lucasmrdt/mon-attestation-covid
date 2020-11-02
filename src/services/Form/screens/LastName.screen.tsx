@@ -1,33 +1,15 @@
 /* eslint-disable react/jsx-pascal-case */
 
 import React, { ChangeEvent, useCallback } from 'react';
-import { Input, message } from 'antd';
-import styled from '@emotion/styled';
+import { message } from 'antd';
+import ContactsFilled from '@ant-design/icons/ContactsFilled';
+import RightOutlined from '@ant-design/icons/RightOutlined';
 
+import { Input } from 'components';
 import { Validators } from 'services/Generator';
 
 import Form from '../components/FormSection';
 import { useForm } from '../store.form';
-
-const StyledInput = styled(Input)`
-  font-size: 14px;
-  font-style: italic;
-  background-color: transparent;
-  border: none;
-  border-radius: 0;
-  border-bottom: solid 1px #fff !important;
-  width: auto;
-  color: #fff;
-  font-style: normal;
-  font-size: 19px;
-  font-family: ${(p) =>
-    // @ts-ignore
-    p.theme.fonts.sansSerif};
-
-  &:focus {
-    outline: none;
-  }
-`;
 
 interface Props {
   onSubmit: () => void;
@@ -55,12 +37,16 @@ const LastNameScreen: React.FC<Props> = ({ onSubmit }) => {
       title={'Entrez votre nom de famille'}
       button={'Continuer'}
       onSubmit={onSubmitWrapper}
+      icon={<RightOutlined />}
     >
-      <StyledInput
+      <Input
         autoFocus
+        // @ts-ignore
+        contentType={'lastname'}
         placeholder={'ex. Chirac'}
         value={lastName}
         onChange={onChange}
+        suffix={<ContactsFilled />}
       />
     </Form>
   );

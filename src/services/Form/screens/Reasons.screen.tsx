@@ -3,6 +3,7 @@
 import React, { useCallback } from 'react';
 import { Checkbox, message } from 'antd';
 import styled from '@emotion/styled';
+import DownloadOutlined from '@ant-design/icons/DownloadOutlined';
 
 import { IReason } from 'services/Generator';
 
@@ -55,6 +56,7 @@ const ReasonsScreen: React.FC<Props> = ({ onSubmit }) => {
       title={'Choisissez un ou plusieurs motifs'}
       button={'Télécharger mon attestation'}
       onSubmit={onSubmitWrapper}
+      icon={<DownloadOutlined />}
     >
       <Checkbox.Group
         style={{ width: '100%' }}

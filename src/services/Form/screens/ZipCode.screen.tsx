@@ -1,33 +1,15 @@
 /* eslint-disable react/jsx-pascal-case */
 
 import React, { ChangeEvent, useCallback } from 'react';
-import { Input, message } from 'antd';
-import styled from '@emotion/styled';
+import { message } from 'antd';
+import CompassFilled from '@ant-design/icons/CompassFilled';
+import RightOutlined from '@ant-design/icons/RightOutlined';
 
+import { Input } from 'components';
 import { Validators } from 'services/Generator';
 
 import Form from '../components/FormSection';
 import { useForm } from '../store.form';
-
-const StyledInput = styled(Input)`
-  font-size: 14px;
-  font-style: italic;
-  background-color: transparent;
-  border: none;
-  border-radius: 0;
-  border-bottom: solid 1px #fff !important;
-  width: auto;
-  color: #fff;
-  font-style: normal;
-  font-size: 19px;
-  font-family: ${(p) =>
-    // @ts-ignore
-    p.theme.fonts.sansSerif};
-
-  &:focus {
-    outline: none;
-  }
-`;
 
 interface Props {
   onSubmit: () => void;
@@ -45,7 +27,7 @@ const ZipCodeScreen: React.FC<Props> = ({ onSubmit }) => {
   }, [zipCode, onSubmit]);
   const onChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      setZipCode(e.currentTarget.value);
+      setZipCode(e.currentTarget.value.replace(/[^\d/]/g, ''));
     },
     [setZipCode],
   );
@@ -55,12 +37,18 @@ const ZipCodeScreen: React.FC<Props> = ({ onSubmit }) => {
       title={'Entrez votre code ZIP'}
       button={'Continuer'}
       onSubmit={onSubmitWrapper}
+      icon={<RightOutlined />}
     >
-      <StyledInput
+      <Input
         autoFocus
+        // @ts-ignore
+        contentType={'postal-code'}
         placeholder={'ex. 75000'}
         value={zipCode}
         onChange={onChange}
+        maxLength={5}
+        inputMode={'numeric'}
+        suffix={<CompassFilled />}
       />
     </Form>
   );

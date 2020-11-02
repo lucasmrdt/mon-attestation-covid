@@ -24,6 +24,8 @@ const StyledButton = styled(Button)`
   height: auto;
   border: none;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
   span {
     font-size: 17px;
     color: #111216;
@@ -31,7 +33,7 @@ const StyledButton = styled(Button)`
 `;
 
 const Container = styled(Article)`
-  padding-bottom: 50px;
+  padding-bottom: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,6 +43,7 @@ interface Props {
   title: string;
   button: string;
   onSubmit: () => void;
+  icon: React.ReactElement;
   children: React.ReactElement;
 }
 
@@ -49,6 +52,7 @@ const FormSection: React.FC<Props> = ({
   title,
   button,
   children,
+  icon,
 }) => {
   const onSubmitWrapper = useCallback(
     (e: FormEvent) => {
@@ -64,7 +68,10 @@ const FormSection: React.FC<Props> = ({
         <Title>{title}</Title>
         <form onSubmit={onSubmitWrapper}>{children}</form>
       </Container>
-      <StyledButton onClick={onSubmit}>{button}</StyledButton>
+      <StyledButton onClick={onSubmit}>
+        {button}
+        {icon}
+      </StyledButton>
     </>
   );
 };
