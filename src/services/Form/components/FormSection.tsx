@@ -10,7 +10,7 @@ import { Headings, Article } from 'components';
 const Title = styled(Headings.h1)`
   text-align: center;
   margin: auto;
-  margin-bottom: 220px;
+  margin-bottom: 170px;
   margin-top: 70px;
 
   ${mediaqueries.phone`
@@ -20,12 +20,12 @@ const Title = styled(Headings.h1)`
 
 const StyledButton = styled(Button)`
   position: fixed;
-  height: auto;
   border: none;
   border-radius: 5px;
   display: flex;
   align-items: center;
   bottom: 40px;
+  padding: 20px 25px;
   span {
     font-size: 17px;
     color: #111216;

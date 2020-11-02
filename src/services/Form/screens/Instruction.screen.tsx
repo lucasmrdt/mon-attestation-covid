@@ -3,6 +3,7 @@
 import React from 'react';
 import { Button } from 'antd';
 import styled from '@emotion/styled';
+import RightOutlined from '@ant-design/icons/RightOutlined';
 
 import { Anchor, Headings, OrderedList, Paragraph, Article } from 'components';
 
@@ -25,9 +26,11 @@ const LegalNotice = styled(Paragraph)`
 const StyledButton = styled(Button)`
   position: fixed;
   bottom: 40px;
-  height: auto;
+  padding: 20px 25px;
   border: none;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
   span {
     font-size: 17px;
     color: #111216;
@@ -80,7 +83,10 @@ const InstructionScreen: React.FC<Props> = ({ onSubmit }) => (
         COVID-19.
       </LegalNotice>
     </Container>
-    <StyledButton onClick={onSubmit}>J'ai compris !</StyledButton>
+    <StyledButton onClick={onSubmit}>
+      Commencer
+      <RightOutlined />
+    </StyledButton>
   </>
 );
 

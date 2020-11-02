@@ -21,6 +21,7 @@ const StyledInput = styled(Input)`
   outline: none;
   box-shadow: none;
   input {
+    caret-color: #fff;
     background-color: transparent;
     border: none;
     border-radius: 0;
