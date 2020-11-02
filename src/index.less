@@ -6,9 +6,19 @@ html, body, #root {
   margin: 0;
   padding: 0;
   background-color: #111216;
+}
+
+html, body {
   overscroll-behavior-y: none;
   position: fixed;
   overflow: hidden;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; /* enables “momentum” (smooth) scrolling */
 }
 
 *:focus {
