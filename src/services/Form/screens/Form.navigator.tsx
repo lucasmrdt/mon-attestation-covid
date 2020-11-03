@@ -54,7 +54,14 @@ const FormScreen: React.FC<Props> = () => {
       }),
     [setStep],
   );
-  const onPrev = useCallback(() => setStep((prev) => prev - 1), [setStep]);
+  const onPrev = useCallback(
+    () =>
+      setStep((prev) => {
+        window.history.pushState(`${prev - 1}`, '');
+        return prev - 1;
+      }),
+    [setStep],
+  );
   const onFinish = useCallback(async () => {
     const close = message.loading('Création du pdf ...');
     try {
