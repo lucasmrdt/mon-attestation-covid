@@ -13,6 +13,7 @@ export const FormStore = createStore(
     city: '',
     zipCode: '',
     reasons: [] as string[],
+    warned: false,
   },
   [
     persistKeys([
@@ -24,6 +25,7 @@ export const FormStore = createStore(
       'lastName',
       'placeOfBirth',
       'zipCode',
+      'warned',
     ]),
   ],
 );

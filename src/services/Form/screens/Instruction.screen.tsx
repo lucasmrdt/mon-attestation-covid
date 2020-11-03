@@ -7,6 +7,10 @@ import RightOutlined from '@ant-design/icons/RightOutlined';
 
 import { Anchor, Headings, OrderedList, Paragraph, Article } from 'components';
 
+import { FormStore } from '../store.form';
+
+const isMobile = typeof window.orientation !== 'undefined';
+
 const Title = styled(Headings.h1)`
   text-align: center;
   margin: auto;
@@ -48,13 +52,19 @@ interface Props {
 
 const InstructionScreen: React.FC<Props> = ({ onSubmit }) => {
   useEffect(() => {
-    message.warn({
-      content:
-        'Ouvrez le site sur votre navigateur préféré et non sur les réseaux sociaux.',
-      style: {
-        textAlign: 'left',
-      },
+    const af = requestAnimationFrame(() => {
+      const warned = FormStore.get('warned');
+      !warned &&
+        message.warn({
+          content:
+            'Ouvrez le site sur votre navigateur préféré et non sur les réseaux sociaux.',
+          style: isMobile && {
+            textAlign: 'left',
+          },
+        });
+      FormStore.set('warned', true);
     });
+    return () => cancelAnimationFrame(af);
   }, []);
 
   return (

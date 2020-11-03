@@ -2,10 +2,11 @@
 
 import React, { useCallback, useEffect } from 'react';
 import styled from '@emotion/styled';
+import { message } from 'antd';
 
 import { Anchor, Section } from 'components';
 
-import { useForm } from '../store.form';
+import { useForm, FormStore } from '../store.form';
 import { submitForm } from '../controllers.form';
 import InstructionScreen from './Instruction.screen';
 import FirstNameScreen from './FirstName.screen';
@@ -16,7 +17,6 @@ import ZipCodeScreen from './ZipCode.screen';
 import CityScreen from './City.screen';
 import AddressScreen from './Address.screen';
 import ReasonsScreen from './Reasons.screen';
-import { message } from 'antd';
 
 const BackButton = styled(Anchor)`
   position: absolute;
@@ -54,14 +54,7 @@ const FormScreen: React.FC<Props> = () => {
       }),
     [setStep],
   );
-  const onPrev = useCallback(
-    () =>
-      setStep((prev) => {
-        window.history.back();
-        return prev - 1;
-      }),
-    [setStep],
-  );
+  const onPrev = useCallback(() => setStep((prev) => prev - 1), [setStep]);
   const onFinish = useCallback(async () => {
     const close = message.loading('Création du pdf ...');
     try {
@@ -86,16 +79,17 @@ const FormScreen: React.FC<Props> = () => {
     [setStep],
   );
 
+  useEffect(() => {
+    window.onpopstate = onHistoryStateUpdate;
+    requestAnimationFrame(() => {
+      window.history.replaceState(`${FormStore.get('step')}`, '');
+    });
+  }, [onHistoryStateUpdate]);
+
   const CurrentStep = steps.find((_, index) => index === step);
   if (!CurrentStep) {
-    throw new Error('invalid step');
+    return null;
   }
-
-  useEffect(() => {
-    window.history.replaceState(`${step}`, '');
-    window.onpopstate = onHistoryStateUpdate;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [onHistoryStateUpdate]);
 
   return (
     <Section>

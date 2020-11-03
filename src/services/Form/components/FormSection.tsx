@@ -7,6 +7,8 @@ import styled from '@emotion/styled';
 import mediaqueries from 'styles/styles.utils';
 import { Headings, Article } from 'components';
 
+const isAndroid = navigator.userAgent.toLowerCase().indexOf('android') > -1;
+
 const Title = styled(Headings.h1)`
   text-align: center;
   margin: auto;
@@ -68,6 +70,7 @@ const FormSection: React.FC<Props> = ({
     const type = e.target.getAttribute('type');
     if (
       e.target.tagName === 'INPUT' &&
+      isAndroid &&
       (type === 'text' || type === 'number')
     ) {
       setFocused(true);
@@ -77,6 +80,7 @@ const FormSection: React.FC<Props> = ({
     const type = e.target.getAttribute('type');
     if (
       e.target.tagName === 'INPUT' &&
+      isAndroid &&
       (type === 'text' || type === 'number')
     ) {
       setFocused(false);
