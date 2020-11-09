@@ -5,5 +5,15 @@ import Paragraph from './Paragraph';
 import Section from './Section';
 import Article from './Article';
 import Input from './Input';
+import Github from './Github';
 
-export { Anchor, Headings, OrderedList, Paragraph, Section, Article, Input };
+export {
+  Anchor,
+  Headings,
+  OrderedList,
+  Paragraph,
+  Section,
+  Article,
+  Input,
+  Github,
+};

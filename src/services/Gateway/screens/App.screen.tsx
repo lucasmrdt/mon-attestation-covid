@@ -5,8 +5,6 @@ import { Global } from '@emotion/core';
 import { FormNavigator } from 'services/Form';
 import { globalStyles } from 'styles/styles.global';
 
-import { useGateway } from '../store.gateway';
-
 const Container = styled.div<any, { [key: string]: any }>`
   position: relative;
   background: ${(p) => p.theme.colors.background};
@@ -17,12 +15,10 @@ const Container = styled.div<any, { [key: string]: any }>`
 `;
 
 const Gateway: React.FC = () => {
-  const [onBoarded] = useGateway('onBoarded');
-
   return (
     <Container>
       <Global styles={globalStyles} />
-      {onBoarded ? <p>ok</p> : <FormNavigator />}
+      <FormNavigator />
     </Container>
   );
 };

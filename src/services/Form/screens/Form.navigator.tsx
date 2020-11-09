@@ -4,7 +4,7 @@ import React, { useCallback, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { message } from 'antd';
 
-import { Anchor, Section } from 'components';
+import { Anchor, Github, Section } from 'components';
 
 import { useForm, FormStore } from '../store.form';
 import { submitForm } from '../controllers.form';
@@ -102,6 +102,7 @@ const FormScreen: React.FC<Props> = () => {
     <Section>
       {step > 0 && <BackButton onClick={onPrev}>Retour</BackButton>}
       {step > 0 && <Stepper>{`${step + 1}/${steps.length}`}</Stepper>}
+      {<Github url={'https://github.com/lucasmrdt/monattestationcovid.fr'} />}
       <CurrentStep onSubmit={step === steps.length - 1 ? onFinish : onNext} />
     </Section>
   );
