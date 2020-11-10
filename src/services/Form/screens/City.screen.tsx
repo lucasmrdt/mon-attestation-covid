@@ -9,7 +9,7 @@ import { Input } from 'components';
 import { Validators } from 'services/Generator';
 
 import Form from '../components/FormSection';
-import { useForm } from '../store.form';
+import { useForm } from '../form.store';
 
 interface Props {
   onSubmit: () => void;

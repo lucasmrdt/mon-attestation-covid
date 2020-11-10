@@ -6,17 +6,17 @@ import { message } from 'antd';
 
 import { Anchor, Github, Section } from 'components';
 
-import { useForm, FormStore } from '../store.form';
-import { submitForm } from '../controllers.form';
-import InstructionScreen from './Instruction.screen';
-import FirstNameScreen from './FirstName.screen';
-import LastNameScreen from './LastName.screen';
-import BirthDateScreen from './BirthDate.screen';
-import PlaceOfBirthScreen from './PlaceOfBirth.screen';
-import ZipCodeScreen from './ZipCode.screen';
-import CityScreen from './City.screen';
-import AddressScreen from './Address.screen';
-import ReasonsScreen from './Reasons.screen';
+import { useForm, FormStore } from './form.store';
+import { submitForm } from './form.controllers';
+import InstructionScreen from './screens/Instruction.screen';
+import FirstNameScreen from './screens/FirstName.screen';
+import LastNameScreen from './screens/LastName.screen';
+import BirthDateScreen from './screens/BirthDate.screen';
+import PlaceOfBirthScreen from './screens/PlaceOfBirth.screen';
+import ZipCodeScreen from './screens/ZipCode.screen';
+import CityScreen from './screens/City.screen';
+import AddressScreen from './screens/Address.screen';
+import ReasonsScreen from './screens/Reasons.screen';
 
 const BackButton = styled(Anchor)`
   position: absolute;

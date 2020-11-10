@@ -1,3 +1,5 @@
+// @from https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020
+
 const plainAttributes = [
   'for',
   'inputmode',

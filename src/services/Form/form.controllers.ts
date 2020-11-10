@@ -2,7 +2,7 @@ import moment from 'moment';
 
 import { createCertificate } from 'services/Generator';
 
-import { FormStore } from './store.form';
+import { FormStore } from './form.store';
 
 export const submitForm = () =>
   createCertificate({

@@ -7,7 +7,7 @@ import RightOutlined from '@ant-design/icons/RightOutlined';
 
 import { Anchor, Headings, OrderedList, Paragraph, Article } from 'components';
 
-import { FormStore } from '../store.form';
+import { FormStore } from '../form.store';
 
 const isMobile = typeof window.orientation !== 'undefined';
 

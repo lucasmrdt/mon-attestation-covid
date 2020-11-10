@@ -1,3 +1,3 @@
-import FormNavigator from './screens/Form.navigator';
+import FormNavigator from './Form.navigator';
 
 export { FormNavigator };

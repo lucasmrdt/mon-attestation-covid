@@ -6,10 +6,10 @@ import styled from '@emotion/styled';
 import DownloadOutlined from '@ant-design/icons/DownloadOutlined';
 
 import { IReason } from 'services/Generator';
+import { Anchor } from 'components';
 
 import Form from '../components/FormSection';
-import { useForm } from '../store.form';
-import { Anchor } from 'components';
+import { useForm } from '../form.store';
 
 const StyledCheckbox = styled(Checkbox)`
   font-size: 14px;
