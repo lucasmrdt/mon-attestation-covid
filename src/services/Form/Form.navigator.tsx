@@ -18,6 +18,8 @@ import CityScreen from './screens/City.screen';
 import AddressScreen from './screens/Address.screen';
 import ReasonsScreen from './screens/Reasons.screen';
 
+const isMobile = typeof window.orientation !== 'undefined';
+
 const BackButton = styled(Anchor)`
   position: absolute;
   align-self: flex-start;
@@ -92,6 +94,30 @@ const FormScreen: React.FC<Props> = () => {
       window.history.replaceState(`${FormStore.get('step')}`, '');
     });
   }, [onHistoryStateUpdate]);
+
+  useEffect(() => {
+    const af = requestAnimationFrame(() => {
+      const warned = FormStore.get('warned');
+      const rgpdWarned = FormStore.get('rgpdWarned');
+      if (!warned || rgpdWarned) {
+        return;
+      }
+      message.warn({
+        content:
+          "Cette web app utilise le service Google Analytics dans l'unique but de comptabiliser le nombre de vues générées sur le site, aucune information personnelle n'est transmise ou sauvegardée par ce tiers.",
+        style: {
+          fontSize: 10,
+          ...(isMobile && {
+            textAlign: 'left',
+          }),
+        },
+        duration: 6,
+      });
+      FormStore.set('rgpdWarned', true);
+    });
+
+    return () => cancelAnimationFrame(af);
+  }, []);
 
   const CurrentStep = steps.find((_, index) => index === step);
   if (!CurrentStep) {

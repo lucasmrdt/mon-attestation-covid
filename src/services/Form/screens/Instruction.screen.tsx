@@ -54,26 +54,7 @@ const InstructionScreen: React.FC<Props> = ({ onSubmit }) => {
   const legalNoticeRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const af1 = requestAnimationFrame(() => {
-      const warned = FormStore.get('warned');
-      const rgpdWarned = FormStore.get('rgpdWarned');
-      if (!warned || rgpdWarned) {
-        return;
-      }
-      message.warn({
-        content:
-          "Cette web app utilise le service Google Analytics dans l'unique but de comptabiliser le nombre de vues générées sur le site, aucune information personnelle n'est transmise ou sauvegardée par ce tiers.",
-        style: {
-          fontSize: 10,
-          ...(isMobile && {
-            textAlign: 'left',
-          }),
-        },
-        duration: 6,
-      });
-      FormStore.set('rgpdWarned', true);
-    });
-    const af2 = requestAnimationFrame(() => {
+    const af = requestAnimationFrame(() => {
       const warned = FormStore.get('warned');
       if (warned) {
         return;
@@ -88,10 +69,7 @@ const InstructionScreen: React.FC<Props> = ({ onSubmit }) => {
       FormStore.set('warned', true);
     });
 
-    return () => {
-      cancelAnimationFrame(af1);
-      cancelAnimationFrame(af2);
-    };
+    return () => cancelAnimationFrame(af);
   }, []);
 
   useEffect(() => {
