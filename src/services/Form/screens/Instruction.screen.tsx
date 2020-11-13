@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-pascal-case */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Button, message } from 'antd';
 import styled from '@emotion/styled';
 import RightOutlined from '@ant-design/icons/RightOutlined';
@@ -51,20 +51,59 @@ interface Props {
 }
 
 const InstructionScreen: React.FC<Props> = ({ onSubmit }) => {
+  const legalNoticeRef = useRef<HTMLSpanElement>(null);
+
   useEffect(() => {
-    const af = requestAnimationFrame(() => {
+    const af1 = requestAnimationFrame(() => {
       const warned = FormStore.get('warned');
-      !warned &&
-        message.warn({
-          content:
-            'Ouvrez le site sur votre navigateur préféré et non sur les réseaux sociaux.',
-          style: isMobile && {
+      const rgpdWarned = FormStore.get('rgpdWarned');
+      if (!warned || rgpdWarned) {
+        return;
+      }
+      message.warn({
+        content:
+          "Cette web app utilise le service Google Analytics dans l'unique but de comptabiliser le nombre de vues générées sur le site, aucune information personnelle n'est transmise ou sauvegardée par ce tiers.",
+        style: {
+          fontSize: 10,
+          ...(isMobile && {
             textAlign: 'left',
-          },
-        });
+          }),
+        },
+        duration: 6,
+      });
+      FormStore.set('rgpdWarned', true);
+    });
+    const af2 = requestAnimationFrame(() => {
+      const warned = FormStore.get('warned');
+      if (warned) {
+        return;
+      }
+      message.warn({
+        content:
+          'Ouvrez le site sur votre navigateur préféré et non sur les réseaux sociaux.',
+        style: isMobile && {
+          textAlign: 'left',
+        },
+      });
       FormStore.set('warned', true);
     });
-    return () => cancelAnimationFrame(af);
+
+    return () => {
+      cancelAnimationFrame(af1);
+      cancelAnimationFrame(af2);
+    };
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.length > 0 &&
+        entries[0].isIntersecting &&
+        FormStore.set('rgpdWarned', true),
+    );
+    if (legalNoticeRef.current) {
+      observer.observe(legalNoticeRef.current);
+    }
   }, []);
 
   return (
@@ -95,9 +134,9 @@ const InstructionScreen: React.FC<Props> = ({ onSubmit }) => {
           </li>
         </Steps>
         <LegalNotice>
-          Toutes vos informations sont stockés localement à votre appareil et ne
-          sont jamais envoyé à un serveur. La web app est basée sur le projet
-          officiel du ministère de l'intérieur{' '}
+          Toutes vos informations personnelles sont stockées localement à votre
+          appareil et ne sont jamais envoyé à un serveur. La web app est basée
+          sur le projet officiel du ministère de l'intérieur{' '}
           <Anchor
             href="https://media.interieur.gouv.fr/deplacement-covid-19/"
             target="_blank"
@@ -106,6 +145,13 @@ const InstructionScreen: React.FC<Props> = ({ onSubmit }) => {
           </Anchor>
           . Cette web app génère donc un document officiel de déplacement
           COVID-19.
+          <br />
+          <br />
+          <span ref={legalNoticeRef}>
+            Cette web app utilise le service Google Analytics dans l'unique but
+            de comptabiliser le nombre de vues générées sur le site, aucune
+            information personnelle n'est transmise ou sauvegardée par ce tiers.
+          </span>
         </LegalNotice>
       </Container>
       <StyledButton onClick={onSubmit}>
