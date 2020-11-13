@@ -29,9 +29,7 @@ const BirthDateScreen: React.FC<Props> = ({ onSubmit }) => {
     (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.currentTarget.value;
       const replacedValue = value.replace(/[^\d/]/g, '');
-      console.log(replacedValue);
       if (value.length < birthDate.length) {
-        console.log(value, birthDate);
         setBirthDate(replacedValue);
       } else {
         const formattedValue = replacedValue
