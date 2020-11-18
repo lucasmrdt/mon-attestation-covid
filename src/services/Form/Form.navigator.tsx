@@ -99,7 +99,7 @@ const FormScreen: React.FC<Props> = () => {
     const af = requestAnimationFrame(() => {
       const warned = FormStore.get('warned');
       const rgpdWarned = FormStore.get('rgpdWarned');
-      if (!warned || rgpdWarned) {
+      if (step === 0 || !warned || rgpdWarned) {
         return;
       }
       message.warn({
@@ -117,7 +117,7 @@ const FormScreen: React.FC<Props> = () => {
     });
 
     return () => cancelAnimationFrame(af);
-  }, []);
+  }, [step]);
 
   const CurrentStep = steps.find((_, index) => index === step);
   if (!CurrentStep) {
