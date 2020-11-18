@@ -73,6 +73,9 @@ const InstructionScreen: React.FC<Props> = ({ onSubmit }) => {
   }, []);
 
   useEffect(() => {
+    if (!('IntersectionObserver' in window)) {
+      return;
+    }
     const observer = new IntersectionObserver(
       (entries) =>
         entries.length > 0 &&
