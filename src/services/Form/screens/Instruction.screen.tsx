@@ -89,7 +89,7 @@ const InstructionScreen: React.FC<Props> = ({ onSubmit }) => {
       <Container>
         <Title>Générer votre attestation de déplacement COVID-19</Title>
         <Headings.h2>
-          TEST1 Votre attestation officielle en quelques secondes. Entrez vos
+          Votre attestation officielle en quelques secondes. Entrez vos
           informations <b>une seule et unique fois</b>.
           <br />
           <br />
